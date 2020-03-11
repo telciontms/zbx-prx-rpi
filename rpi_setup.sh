@@ -2,7 +2,7 @@
 # Variables
 #
 #
-LIST_OF_APPS="vim telnet wget perl"
+LIST_OF_APPS="vim telnet wget perl openjdk-8-jdk"
 #
 #
 echo "Script process beginning..."
@@ -264,6 +264,9 @@ systemctl start zabbix-agent
 #
 #
 #
+# Installing Screenconnect
+wget -O screenconnect.deb "https://telcion.screenconnect.com/Bin/ConnectWiseControl.ClientSetup.deb?h=instance-qtu7i0-relay.screenconnect.com&p=443&k=BgIAAACkAABSU0ExAAgAAAEAAQBj0ekm97tsnjZ8JLGAKUqqkTSc81iSCQWtBADPIh5dHlbusm%2F9MHWVYSEMNWrv0sbWba0bSyud24nR0amcySO8nBHCB%2B6SuOTYBcdD8inDrAU6usXEZxQiqEdsC6Nx0a6EYg2we3Xm673gAU3bhfkHktK4UZU9c0ZMu57TaYN8YZMJkUPDvOLnxqXOxZ%2FxM744MbkRV4iHER%2FMtwal%2FS%2FD03FcP9fGS4yBlrp11LLff8N4qiCUdabsz2tpmbZthTvLssJm%2Bcn8FpvQCGtVdhdjqcnyQPFQ4gu8FI0PcGKc0al80lkUSXIXrTu%2FDd3fGqphEoiKIfYzdCtLSOVuEsLB&e=Access&y=Guest&t=&c=Telcion&c=&c=&c=&c=&c=&c=&c="
+dpkg -i screenconnect.deb
 # Cleanup
 echo "Running cleanup..."
 echo "-> sudo apt-get -y autoremove"
