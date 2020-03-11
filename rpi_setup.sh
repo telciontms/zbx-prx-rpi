@@ -22,7 +22,6 @@ read -p 'Hostname: ' HOSTNAME
 hostnamectl set-hostname $HOSTNAME
 echo Setting hostname...
 sed -i "s/raspberrypi/$HOSTNAME/g" /etc/hosts
-sleep 2
 echo "Hostname has been set to $HOSTNAME..."
 #
 #
@@ -49,14 +48,12 @@ read -p "Username: " USERNAME
 echo "Creating user account for $USERNAME..."
 adduser $USERNAME
 adduser $USERNAME sudo
-sleep 2
 echo "$USERNAME user has been created..."
 #
 #
 #
 # Configuring SSH
 echo Configuring ssh settings...
-sleep 2
 sed -i 's/#Protocol 2/Protocol 2/g' /etc/ssh/ssh_config
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/g' /etc/ssh/sshd_config
 echo "AllowUsers $USERNAME" >> /etc/ssh/sshd_config
@@ -73,24 +70,20 @@ echo "Default applications have been installed..."
 #
 #
 # Changing password for root and pi
-sleep 2
 echo Change root Password...
 echo Please specify password for root...
 passwd root
 echo The root password has been changed...
-sleep 2
 echo Change pi Password...
 echo Please specify password for pi...
 passwd pi
 echo The pi user password has been changed...
-sleep 2
 echo "root user and pi user passwords have now been changed..."
 #
 #
 #
 # Requiring sudo Password
 echo Configuring sudo password requirement...
-sleep 2
 sed -i 's/pi ALL=(ALL) NOPASSWD: ALL/pi ALL=(ALL) PASSWD: ALL/g' /etc/sudoers.d/010_pi-nopasswd
 echo "$USERNAME ALL=(ALL) PASSWD: ALL" >> /etc/sudoers.d/010_pi-nopasswd
 echo "Sudo password requirement configuration has been completed..."
@@ -99,7 +92,6 @@ echo "Sudo password requirement configuration has been completed..."
 #
 # Configure timezone information
 echo Configuring timezone...
-sleep 2
 timedatectl set-timezone America/Los_Angeles
 echo 'FallbackNTP=0.us.pool.ntp.org 1.us.pool.ntp.org 2.us.pool.ntp.org' >> /etc/systemd/timesyncd.conf
 echo "Timezone has been configured as America/Los_Angeles"
@@ -192,10 +184,8 @@ read -p 'Zabbix Proxy Hostame: ' HOSTNAMEVAR
 echo "Please specify the Zabbix Server"
 read -p 'Zabbix Server: ' ZABBIXSERVER
 echo "Setting $ZABBIXSERVER as the Zabbix Server..."
-sleep 5
 sed -i "s/Server=127.0.0.1/Server=$ZABBIXSERVER/g" /etc/zabbix/zabbix_proxy.conf
 echo "Setting $HOSTNAMEVAR as the proxy name..."
-sleep 5
 sed -i "s/Hostname=Zabbix proxy/Hostname=$HOSTNAMEVAR/g" /etc/zabbix/zabbix_proxy.conf
 #
 #
@@ -204,10 +194,8 @@ sed -i "s/Hostname=Zabbix proxy/Hostname=$HOSTNAMEVAR/g" /etc/zabbix/zabbix_prox
 echo Configuring Zabbix Proxy DB Connection Parameters...
 sed -i 's/DBName=zabbix_proxy/DBName=zabbix/g' /etc/zabbix/zabbix_proxy.conf
 sed -i "s/# DBPassword=/DBPassword=$MYSQLZABBIXPW/g" /etc/zabbix/zabbix_proxy.conf
-sleep 5
 echo Configuring zabbix proxy configuration retrieval frequency
 sed -i 's/# ConfigFrequency=3600/ConfigFrequency=1200/g' /etc/zabbix/zabbix_proxy.conf
-sleep 5
 echo Configuring other zabbix proxy parameters...
 sed -i 's/# StartPollers=5/StartPollers=10/g' /etc/zabbix/zabbix_proxy.conf
 sed -i 's/# StartPollerUnreachable=1/StartPollerUnreachable=5/g' /etc/zabbix/zabbix_proxy.conf
@@ -217,14 +205,12 @@ sed -i 's/# StartVMwareCollectors=0/StartVMwareCollectors=5/g' /etc/zabbix/zabbi
 sed -i 's/# VMwareCacheSize=8M/VMwareCacheSize=100M/g' /etc/zabbix/zabbix_proxy.conf
 sed -i 's/# CacheSize=8M/CacheSize=100M/g' /etc/zabbix/zabbix_proxy.conf
 sed -i 's/# AllowRoot=0/AllowRoot=1/g' /etc/zabbix/zabbix_proxy.conf
-sleep 10
 echo Zabbix Proxy Parameters have been configured
 #
 #
 #
 # Configuring TLS PSK Encryption
 echo Configuring TLS settings...
-sleep 5
 echo "Please specify the Zabbix Proxy PSK ID.  This should be in the format of PSK###."
 echo "You should use the same number as you specified in the hostname ($HOSTNAMEVAR)."
 read -p 'Zabbix Proxy PSK ID: ' PSKID
@@ -234,7 +220,6 @@ echo "You have chosen $PSKID."
 #
 # Configuring PSK ID
 echo "Configuring PSK ID settings..."
-sleep 10
 sed -i 's/# TLSConnect=unencrypted/TLSConnect=psk/g' /etc/zabbix/zabbix_proxy.conf
 sed -i "s/# TLSPSKIdentity=/TLSPSKIdentity=$PSKID/g" /etc/zabbix/zabbix_proxy.conf
 sed -i "s+# TLSPSKFile=+TLSPSKFile=/etc/zabbix/zabbix_proxy.psk+g" /etc/zabbix/zabbix_proxy.conf
@@ -243,15 +228,8 @@ sed -i "s+# TLSPSKFile=+TLSPSKFile=/etc/zabbix/zabbix_proxy.psk+g" /etc/zabbix/z
 #
 # Configuring PSK Encryption Key
 echo "Creating PSK Encryption Key..."
-sleep 5
 touch /etc/zabbix/zabbix_proxy.psk
 openssl rand -hex 32 > /etc/zabbix/zabbix_proxy.psk
-#
-#
-#
-# Gather WAN IP Address Information
-echo "Gathering WAN IP Address Information..."
-sleep 5
 #
 #
 #
