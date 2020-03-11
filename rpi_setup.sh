@@ -144,6 +144,7 @@ stty -echo
 printf "Specify password for mysql root user: "
 read MYSQLROOTPW
 stty echo
+echo " "
 stty -echo
 printf "Specify password for mysql zabbix user: "
 read MYSQLZABBIXPW
