@@ -2,7 +2,7 @@
 # Variables
 #
 #
-LIST_OF_APPS="vim telnet wget perl openjdk-8-jdk"
+LIST_OF_APPS="vim telnet wget perl default-jdk"
 #
 #
 echo "Script process beginning..."
