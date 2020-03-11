@@ -153,7 +153,7 @@ mysql -uroot -e "create database zabbix character set utf8 collate utf8_bin;"
 mysql -uroot -e "grant all privileges on zabbix.* to zabbix@localhost identified by '$MYSQLZABBIXPW';"
 mysql -uroot -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQLROOTPW');"
 mysql -uroot -e "FLUSH PRIVILEGES;"
-echo "Importing the initial schema.  When prompted provide the mysql zabbix user password as specified above.  This process takes a few minutes so please be patient.  Pressing additional keys could interrupt script process..."
+echo "Importing the initial schema.  This will take a few moments..."
 zcat /usr/share/doc/zabbix-proxy-mysql*/schema.sql.gz | mysql -uzabbix -p$MYSQLZABBIXPW zabbix
 echo "Importing of the initial schema has completed."
 #
