@@ -148,8 +148,12 @@ echo Please configure root and zabbix user passwords based on documentation in I
 echo You can find the information here:
 echo "For the mysql root user: $(tput setaf 1)https://telcion.itglue.com/775995/passwords/5380548#partial=&sortBy=name:asc&filters=%5B%5D $(tput sgr 0)"
 echo "For the mysql zabbix user: $(tput setaf 1)https://telcion.itglue.com/775995/passwords/5380562#partial=&sortBy=name:asc&filters=%5B%5D $(tput sgr 0)"
-read -ps 'Specify password for mysql root user: ' MYSQLROOTPW
-read -ps 'Specify password for mysql zabbix user: ' MYSQLZABBIXPW
+stty -echo
+printf "Specify password for mysql root user: "
+read MYSQLROOTPW
+printf "Specify password for mysql zabbix user: "
+read MYSQLZABBIXPW
+stty echo
 mysql -uroot -e "create database zabbix character set utf8 collate utf8_bin;"
 mysql -uroot -e "grant all privileges on zabbix.* to zabbix@localhost identified by '$MYSQLZABBIXPW';"
 mysql -uroot -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQLROOTPW');"
