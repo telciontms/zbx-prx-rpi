@@ -123,7 +123,7 @@ echo "Firewall has been installed and configured..."
 #
 #Updating .bashrc for users
 echo "updating .bashrc for all users..."
-wget -O /home/$USERNAME/.bashrc.new "https://github.com/telciontms/zbx-prx-rpi/rpi_bashrc"
+wget -O /home/$USERNAME/.bashrc.new "https://raw.githubusercontent.com/telciontms/zbx-prx/rpi/master/rpi_bashrc"
 mv /root/.bashrc /root/.bashrc.orig
 cp /home/$USERNAME/.bashrc.new /root/.bashrc
 mv /home/pi/.bashrc /home/pi/.bashrc.orig
@@ -291,7 +291,7 @@ echo "-> sudo apt-get clean"
 sudo apt-get clean
 echo
 echo "Downloading rpi_zabbix_config.sh script for future configuration changes..."
-wget -O /home/$USERNAME/rpi_zabbix_config.sh "https://github.com/telciontms/zbx-prx-rpi/rpi_zabbix_config.sh"
+wget -O /home/$USERNAME/rpi_zabbix_config.sh "https://raw.githubusercontent.com/telciontms/zbx-prx/rpi/master/rpi_zabbix_config.sh"
 echo "A copy of the Zabbix configuration script has been placed in the following location: /home/$USERNAME/rpi_zabbix_config.sh"
 echo "You can re-run this configuration script of you need to make changes to the zabbix server connection such as zabbix server name, proxy name and encryption settings."
 echo "A reboot is required to complete the setup process."
