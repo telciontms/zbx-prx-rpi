@@ -1,6 +1,7 @@
 #!/bin/sh
 # Variables
 #
+#
 LIST_OF_APPS="vim telnet wget perl"
 #
 #
