@@ -143,6 +143,8 @@ echo "For the mysql zabbix user: $(tput setaf 1)https://telcion.itglue.com/77599
 stty -echo
 printf "Specify password for mysql root user: "
 read MYSQLROOTPW
+stty echo
+stty -echo
 printf "Specify password for mysql zabbix user: "
 read MYSQLZABBIXPW
 stty echo
@@ -151,7 +153,7 @@ mysql -uroot -e "grant all privileges on zabbix.* to zabbix@localhost identified
 mysql -uroot -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQLROOTPW');"
 mysql -uroot -e "FLUSH PRIVILEGES;"
 echo "Importing the initial schema.  When prompted provide the mysql zabbix user password as specified above.  This process takes a few minutes so please be patient.  Pressing additional keys could interrupt script process..."
-zcat /usr/share/doc/zabbix-proxy-mysql*/schema.sql.gz | mysql -uzabbix -p zabbix $MYSQLZABBIXPW
+zcat /usr/share/doc/zabbix-proxy-mysql*/schema.sql.gz | mysql -uzabbix -p$MYSQLZABBIXPW zabbix
 echo "Importing of the initial schema has completed."
 #
 #
