@@ -91,7 +91,7 @@ echo "root user and pi user passwords have now been changed..."
 echo Configuring sudo password requirement...
 sleep 2
 sed -i 's/pi ALL=(ALL) NOPASSWD: ALL/pi ALL=(ALL) PASSWD: ALL/g' /etc/sudoers.d/010_pi-nopasswd
-echo 'telcion ALL=(ALL) PASSWD: ALL' >> /etc/sudoers.d/010_pi-nopasswd
+echo "$USERNAME ALL=(ALL) PASSWD: ALL" >> /etc/sudoers.d/010_pi-nopasswd
 echo "Sudo password requirement configuration has been completed..."
 #
 #
@@ -290,8 +290,8 @@ echo "-> sudo apt-get clean"
 sudo apt-get clean
 echo
 echo "Downloading rpi_zabbix_config.sh script for future configuration changes..."
-wget -O /home/telcion/rpi_zabbix_config.sh "https://github.com/telciontms/zbx-prx/rpi_zabbix_config.sh"
-echo "A copy of the Zabbix configuration script has been placed in the following location: /home/telcion/rpi_zabbix_config.sh"
+wget -O /home/$USERNAME/rpi_zabbix_config.sh "https://github.com/telciontms/zbx-prx/rpi_zabbix_config.sh"
+echo "A copy of the Zabbix configuration script has been placed in the following location: /home/$USERNAME/rpi_zabbix_config.sh"
 echo "You can re-run this configuration script of you need to make changes to the zabbix server connection such as zabbix server name, proxy name and encryption settings."
 echo "A reboot is required to complete the setup process."
 read -p "Press [Enter] to reboot the system..." NULL
