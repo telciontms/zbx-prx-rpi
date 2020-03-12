@@ -283,6 +283,7 @@ echo "Installing any other necessary items..."
 apt-get -f install
 echo "Downloading rpi_zabbix_config.sh script for future configuration changes..."
 wget -O /home/$USERNAME/rpi_zabbix_config.sh "https://raw.githubusercontent.com/telciontms/zbx-prx-rpi/master/rpi_zabbix_config.sh"
+wget -O /home/pi/rpi_zabbix_config.sh "https://raw.githubusercontent.com/telciontms/zbx-prx-rpi/master/rpi_zabbix_config.sh"
 echo "A copy of the Zabbix configuration script has been placed in the following location: /home/$USERNAME/rpi_zabbix_config.sh"
 echo "You can re-run this configuration script of you need to make changes to the zabbix server connection such as zabbix server name, proxy name and encryption settings."
 echo "A reboot is required to complete the setup process."
