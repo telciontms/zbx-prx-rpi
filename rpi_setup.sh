@@ -246,7 +246,7 @@ echo "Zabbix Proxy PSK: $(tput setaf 1)$(cat /etc/zabbix/zabbix_proxy.psk) $(tpu
 echo "Zabbix Proxy Address: echo $(tput setaf 1) $(curl -s ipv4.icanhazip.com) $(tput sgr 0)"
 echo " "
 echo " "
-read -p "Once the above information has been added to the Zabbix Server, press [Enter] to start the zabbix proxy..." NULL
+read -p "Please create a new Zabbix Proxy in the Zabbix Server using the above information.  Once complete press [Enter] to start the zabbix proxy service..." NULL
 #
 #
 #
