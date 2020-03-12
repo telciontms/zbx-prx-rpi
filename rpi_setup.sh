@@ -241,9 +241,9 @@ openssl rand -hex 32 > /etc/zabbix/zabbix_proxy.psk
 # Instruct to add information to Zabbix Server
 echo "Please add the following information to the Zabbix Server for the Zabbix Proxy setup:"
 echo "Zabbix Proxy Name: $(tput setaf 1)$HOSTNAMEVAR $(tput sgr 0)"
-echo "Zabbix Proxy PSKID: $(tput setaf 1)$PSKID $(tput sgr 0)"
-echo "Zabbix Proxy Encryption Key: $(tput setaf 1)$(cat /etc/zabbix/zabbix_proxy.psk) $(tput sgr 0)"
-echo "Zabbix Proxy WAN IP Address: echo $(tput setaf 1) $(curl -s ipv4.icanhazip.com) $(tput sgr 0)"
+echo "Zabbix Proxy PSK Identity: $(tput setaf 1)$PSKID $(tput sgr 0)"
+echo "Zabbix Proxy PSK: $(tput setaf 1)$(cat /etc/zabbix/zabbix_proxy.psk) $(tput sgr 0)"
+echo "Zabbix Proxy Address: echo $(tput setaf 1) $(curl -s ipv4.icanhazip.com) $(tput sgr 0)"
 echo " "
 echo " "
 read -p "Once the above information has been added to the Zabbix Server, press [Enter] to start the zabbix proxy..." NULL
